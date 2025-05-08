@@ -26,3 +26,19 @@ export async function getStudents(
     return error;
   }
 }
+
+export async function postLogin(username: string, password: string) {
+  try {
+    const res = await axios.post(
+      'https://chudai-api.ouwi.fun/api/v1/auth/signin',
+      {
+        username: username,
+        password: password
+      }
+    );
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
