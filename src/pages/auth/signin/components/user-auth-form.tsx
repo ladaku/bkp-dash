@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { useLogin } from '../queries/queries';
+import { useAuthStore } from '@/hooks/useAuth';
 
 const formSchema = z.object({
   username: z.string(),
@@ -23,6 +24,7 @@ const formSchema = z.object({
 type UserFormValue = z.infer<typeof formSchema>;
 
 export default function UserAuthForm() {
+  const { updateIsLogin } = useAuthStore();
   const router = useRouter();
   const login = useLogin();
   const [loading] = useState(false);
@@ -39,8 +41,10 @@ export default function UserAuthForm() {
     console.log('data', data);
     login.mutateAsync({ ...data }).then((reps) => {
       console.log(reps, 'asikk');
+      localStorage.setItem('broco', reps.data.access_token);
+      updateIsLogin(true);
+      router.push('/');
     });
-    router.push('/');
   };
 
   return (

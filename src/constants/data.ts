@@ -14,6 +14,18 @@ export const navItems: NavItem[] = [
     label: 'Student'
   },
   {
+    title: 'Tag',
+    href: '/tags',
+    icon: 'user',
+    label: 'Tag'
+  },
+  {
+    title: 'Video',
+    href: '/videos',
+    icon: 'user',
+    label: 'Video'
+  },
+  {
     title: 'Login',
     href: '/login',
     icon: 'login',
@@ -148,4 +160,30 @@ export type Employee = {
   latitude?: number; // Optional field
   job: string;
   profile_picture?: string | null; // Profile picture can be a string (URL) or null (if no picture)
+};
+
+export type Posts = {
+  created_at: string;
+  desc: string;
+  id: number;
+  slug: string;
+  thumb_url: string;
+  title: string;
+  updated_at: string;
+  video_url: string; // Profile picture can be a string (URL) or null (if no picture)
+};
+
+export type Tags = {
+  created_at: string;
+  id: number;
+  name: string;
+  updated_at: string;
+};
+
+export type PostPayload = {
+  desc: string;
+  thumb: File;
+  title: string;
+  video: File;
+  tags: string[];
 };

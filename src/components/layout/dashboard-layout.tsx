@@ -1,15 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Sidebar from '../shared/sidebar';
 import Header from '../shared/header';
 import MobileSidebar from '../shared/mobile-sidebar';
 import { MenuIcon } from 'lucide-react';
+import { useAuthStore } from '@/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 export default function DashboardLayout({
   children
 }: {
   children: React.ReactNode;
 }) {
+  const auth = useAuthStore();
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+  useEffect(() => {
+    if (!auth?.isLogin) {
+      navigate('login');
+    }
+  }, [auth?.isLogin, navigate]);
 
   return (
     <div className="flex h-screen overflow-hidden bg-secondary">
