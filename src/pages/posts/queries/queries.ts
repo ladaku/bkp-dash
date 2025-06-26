@@ -1,4 +1,3 @@
-import { PostPayload } from '@/constants/data';
 import { getPostPaging, createPost, getTagSelect, deletePost } from '@/lib/api';
 import { useMutation, useQuery } from '@tanstack/react-query';
 

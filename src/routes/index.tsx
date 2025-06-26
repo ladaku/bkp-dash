@@ -1,9 +1,7 @@
-import { useAuthStore } from '@/hooks/useAuth';
 import FormPage from '@/pages/form';
 import NotFound from '@/pages/not-found';
-import { Suspense, lazy, useEffect, useState } from 'react';
-import { Navigate, Outlet, useNavigate, useRoutes } from 'react-router-dom';
-import { useRouter } from './hooks';
+import { Suspense, lazy } from 'react';
+import { Navigate, Outlet, useRoutes } from 'react-router-dom';
 
 const DashboardLayout = lazy(
   () => import('@/components/layout/dashboard-layout')
@@ -20,8 +18,6 @@ const PostPage = lazy(() => import('@/pages/posts'));
 // ----------------------------------------------------------------------
 
 export default function AppRouter() {
-  const auth = useAuthStore();
-  const router = useRouter();
   const dashboardRoutes = [
     {
       path: '/',
@@ -76,7 +72,6 @@ export default function AppRouter() {
       element: <Navigate to="/404" replace />
     }
   ];
-  const [route, setRoute] = useState(publicRoutes);
 
   // useEffect(() => {
   //   const token = localStorage.getItem('broco');

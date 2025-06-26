@@ -20,7 +20,6 @@ interface CellActionProps {
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const queryClient = useQueryClient();
-  const [loading] = useState(false);
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const post = useDelPost();

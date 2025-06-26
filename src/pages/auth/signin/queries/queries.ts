@@ -1,4 +1,4 @@
-import { getStudents, postLogin } from '@/lib/api';
+import { postLogin } from '@/lib/api';
 import { useMutation } from '@tanstack/react-query';
 
 export const useLogin = () => {
