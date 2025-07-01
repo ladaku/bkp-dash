@@ -4,7 +4,7 @@ pipeline {
     tools {
         nodejs 'Nodejs 22.14.0' // Sesuai nama yang kamu set di konfigurasi
     }
-    
+
     environment {
         NODE_ENV = 'production'
         VITE_URL_API = 'https://chudai.fun/api'
@@ -30,19 +30,19 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                dir('/var/www/hayo') {
-                    sh 'npm run build'
-                }
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         dir('/var/www/hayo') {
+        //             sh 'npm run build'
+        //         }
+        //     }
+        // }
 
-        stage('Archive Build') {
-            steps {
-                archiveArtifacts artifacts: '/var/www/hayo/dist/**', fingerprint: true
-            }
-        }
+        // stage('Archive Build') {
+        //     steps {
+        //         archiveArtifacts artifacts: '/var/www/hayo/dist/**', fingerprint: true
+        //     }
+        // }
     }
 
     post {
