@@ -38,15 +38,15 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-                script {
-                    sh """
-                        sudo cp -r ${PROJECT_DIR}/dist/* ${DEPLOY_DIR}/dist/
-                    """
-                }
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         script {
+        //             sh """
+        //                 sudo cp -r ${PROJECT_DIR}/dist/* ${DEPLOY_DIR}/dist/
+        //             """
+        //         }
+        //     }
+        // }
     }
 }
 
