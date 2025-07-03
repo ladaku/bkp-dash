@@ -96,7 +96,7 @@ export default function UserAuthForm() {
             className="ml-auto w-full"
             type="submit"
           >
-            Login
+            Login duls
           </Button>
         </form>
       </Form>
