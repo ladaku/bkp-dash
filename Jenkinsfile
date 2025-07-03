@@ -10,7 +10,7 @@ pipeline {
     environment {
         VITE_URL_API='https://chudai.fun/api'
         VITE_URL_STATIC='https://chudai.fun/static'
-        PROJECT_DIR = '/home/jenkins/bkp-dash'
+        PROJECT_DIR = '/var/lib/jenkins/workspace/bkp-dash'
         DEPLOY_DIR = '/var/www/bkp-dash'
     }
 
@@ -30,13 +30,13 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                dir("${env.PROJECT_DIR}") {
-                    sh 'npm run build'
-                }
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         dir("${env.PROJECT_DIR}") {
+        //             sh 'npm run build'
+        //         }
+        //     }
+        // }
 
         // stage('Deploy') {
         //     steps {
