@@ -1,3 +1,5 @@
+
+
 pipeline {
     agent any
 
@@ -6,51 +8,45 @@ pipeline {
     }
 
     environment {
-        NODE_ENV = 'production'
-        VITE_URL_API = 'https://chudai.fun/api'
+        VITE_URL_API='https://chudai.fun/api'
         VITE_URL_STATIC='https://chudai.fun/static'
+        PROJECT_DIR = '/home/jenkins/bkp-dash'
+        DEPLOY_DIR = '/var/www/bkp-dash'
     }
 
     stages {
-        stage('Masuk ke Folder Project') {
-            steps {
-                dir('/var/www/hayo') {
-                    script {
-                        echo "📁 Masuk ke /var/www/hayo"
-                    }
-                }
-            }
-        }
+        // stage('Clone Repo') {
+        //     steps {
+        //         // Jika Jenkins pakai "Pipeline script from SCM", tahap ini bisa dilewati
+        //         git url: 'https://github.com/kamu/repo-react-vite.git', branch: 'main'
+        //     }
+        // }
 
         stage('Install Dependencies') {
             steps {
-                dir('/var/www/hayo') {
-                    sh 'npm ci || npm install'
+                dir("${env.PROJECT_DIR}") {
+                    sh 'npm install'
                 }
             }
         }
 
-        // stage('Build') {
-        //     steps {
-        //         dir('/var/www/hayo') {
-        //             sh 'npm run build'
-        //         }
-        //     }
-        // }
-
-        // stage('Archive Build') {
-        //     steps {
-        //         archiveArtifacts artifacts: '/var/www/hayo/dist/**', fingerprint: true
-        //     }
-        // }
-    }
-
-    post {
-        success {
-            echo "✅ Build berhasil!"
+        stage('Build') {
+            steps {
+                dir("${env.PROJECT_DIR}") {
+                    sh 'npm run build'
+                }
+            }
         }
-        failure {
-            echo "❌ Build gagal!"
+
+        stage('Deploy') {
+            steps {
+                script {
+                    sh """
+                        sudo cp -r ${PROJECT_DIR}/dist/* ${DEPLOY_DIR}/dist/
+                    """
+                }
+            }
         }
     }
 }
+
