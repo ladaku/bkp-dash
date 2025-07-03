@@ -30,13 +30,13 @@ pipeline {
             }
         }
 
-        // stage('Build') {
-        //     steps {
-        //         dir("${env.PROJECT_DIR}") {
-        //             sh 'npm run build'
-        //         }
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                dir("${env.PROJECT_DIR}") {
+                    sh 'npm run build'
+                }
+            }
+        }
 
         // stage('Deploy') {
         //     steps {
